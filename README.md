@@ -8,18 +8,43 @@
 - [Documentation](#documentation)
 
 ## About
-/// TODO
+Hex Scraper compiles an HTML file of swatches corresponding to the colors used within a given stylesheet or CSS string.
 
 ## Installation
-/// TODO
+```
+npm install hex-scraper
+```
 
 ## Setup
-/// TODO
+`hex-scraper` does not require any additional setup.
 
 ## Usage
-/// TODO
+After installation, import the `hexScraper` function as follows:
+
+```
+var hexScraper = require( 'hex-scraper' );
+```
+
+To scrape a given stylesheet, invoke the `hexScraper` function as follows:
+
+```
+hexScraper( {
+    input: 'path/to/stylesheet',
+    outFile: 'path/to/output/file.ext',
+} );
+```
+
+Please note, if the `outFile` key is not present on the `options` object, the output will be written to the current working directory.
 
 ## Documentation
-Currently, Hex Scraper does not include any external documentation.
+The `hexScraper` takes a single argument: the `options` object. See the *keys* section below for a list of valid options.
 
-For an overview of the project's evolution, please consult the CHANGELOG.
+### Keys
+#### `data`: string
+String of CSS to 'scrape'. If present, the value of the `data` key will be used instead of the `input`.
+
+### `input`: string
+Path to the CSS file to 'scrape'. If the `data` key is present, this value will be ignored.
+
+### `outFile`: string
+Full path to desired location of output, including: path; filename; extension. If this key is omitted, the output will be written to the current working directory.

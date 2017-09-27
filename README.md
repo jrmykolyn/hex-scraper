@@ -43,8 +43,8 @@ The `hexScraper` takes a single argument: the `options` object. See the *keys* s
 #### `data`: string
 String of CSS to 'scrape'. If present, the value of the `data` key will be used instead of the `input`.
 
-### `input`: string
+#### `input`: string
 Path to the CSS file to 'scrape'. If the `data` key is present, this value will be ignored.
 
-### `outFile`: string
+#### `outFile`: string
 Full path to desired location of output, including: path; filename; extension. If this key is omitted, the output will be written to the current working directory.

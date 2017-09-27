@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "minimist": "^1.2.0"
+  },
+  "dependencies": {
+    "pkg-dir": "^2.0.0"
   }
 }

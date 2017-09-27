@@ -14,8 +14,6 @@ const CONFIG = require( './config' );
 // DECLARE FUNCTIONS
 // --------------------------------------------------
 function rgbToHex( colorStr ) {
-    console.log( 'INSIDE `utils.rgbToHex()`' ); /// TEMP
-
     // Extract RGB values from `color`.
     var vals = colorStr.match( /([0-5]{1,3})/gmi );
 

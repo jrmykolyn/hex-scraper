@@ -5,7 +5,6 @@
 const fs = require( 'fs' );
 
 // Vendor
-const pkgDir = require( 'pkg-dir' );
 
 // Project
 const utils = require( './utils' );

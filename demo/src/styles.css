@@ -1,10 +1,10 @@
 html {
-    color: #111;
-    color: #222;
-    color: #333;
-    color: rgb( 100, 50, 150 );
-    color: rgb( 22, 57, 102 );
-    color: rgb( 67,107,250 );
-    color: rgba( 150, 50, 0, 0.2 );
-    color: rgba( 255, 125, 14, 0.6 );
+	color: #111;
+	color: #222;
+	color: #333;
+	color: rgb( 100, 50, 150 );
+	color: rgb( 22, 57, 102 );
+	color: rgb( 67,107,250 );
+	color: rgba( 150, 50, 0, 0.2 );
+	color: rgba( 255, 125, 14, 0.6 );
 }

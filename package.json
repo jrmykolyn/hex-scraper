@@ -1,10 +1,14 @@
 {
   "name": "hex-scraper",
   "version": "0.0.0",
-  "description": "/// TODO",
+  "description": "Hex Scraper compiles an HTML file of swatches corresponding to the colors used within a given stylesheet or CSS string.",
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrmykolyn/hex-scraper.git"
   },
   "author": "Jesse R Mykolyn",
   "license": "ISC",

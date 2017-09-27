@@ -18,7 +18,7 @@ function rgbToHex( colorStr ) {
 	var vals = colorStr.match( /([0-5]{1,3})/gmi );
 
 	// Convert extracted `vals` to hex code.
-	/// TODO[@jrmykoyln]: Make this not gross.
+	/// TODO[@jrmykolyn]: Make this not gross.
 	var hex = vals
 		.slice( 0, 3 )
 		.map( ( val ) => {

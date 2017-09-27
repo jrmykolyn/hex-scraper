@@ -4,7 +4,7 @@
 // Node
 // Vendor
 // Project
-const CONFIG = require( '../config' );
+const CONFIG = require( './config' );
 
 // --------------------------------------------------
 // DECLARE VARS

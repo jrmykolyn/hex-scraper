@@ -9,7 +9,7 @@ const pkgDir = require( 'pkg-dir' );
 
 // Project
 const utils = require( './utils' );
-const CONFIG = require( '../config' );
+const CONFIG = require( './config' );
 
 // --------------------------------------------------
 // DECLARE VARS

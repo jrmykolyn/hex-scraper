@@ -1,6 +1,6 @@
 {
   "name": "hex-scraper",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Hex Scraper compiles an HTML file of swatches corresponding to the colors used within a given stylesheet or CSS string.",
   "main": "./src/index.js",
   "scripts": {

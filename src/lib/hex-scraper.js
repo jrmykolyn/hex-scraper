@@ -20,7 +20,7 @@ const CONFIG = require( './config' );
 // --------------------------------------------------
 function hexScraper( args ) {
     // Read source stylesheet.
-    const inputSrc = fs.readFileSync( args.input || CONFIG.defaults.input, 'utf8' );
+    const inputSrc = ( args.data || fs.readFileSync( args.input || CONFIG.defaults.input, 'utf8' ) );
 
     // Read source output template.
     const templateSrc = fs.readFileSync( CONFIG.defaults.template, 'utf8' );

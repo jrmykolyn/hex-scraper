@@ -40,7 +40,7 @@ function rgbToHex( colorStr ) {
         } )
         .map( ( arr ) => {
             return arr.map( ( val, i ) => {
-                return CONFIG.hexChars[ val === 16 ? 15 : val ];
+                return CONFIG.data.hexChars[ val === 16 ? 15 : val ];
             } );
         } )
         .reduce( ( a, b ) => {

@@ -3,8 +3,40 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Hex Scraper - Demo</title>
+		<style>
+			.clearfix:after,
+			.clearfix::after {
+				content: '';
+				display: table;
+				clear: both;
+			}
+
+			.swatch {
+				width: 100px;
+				height: 100px;
+				display: block;
+				float: left;
+			}
+		</style>
 	</head>
 	<body>
-		{{ SWATCH_MARKUP }}
+		<main>
+			<section class="swatch-section clearfix">
+				<header class="swatch-section__header">
+					<h1>Transparent Swatches</h1>
+				</header>
+				<div class="swatch-section__body clearfix">
+					{{ TRANSPARENT_SWATCH_MARKUP }}
+				</div>
+			</section>
+			<section class="swatch-section clearfix">
+				<header class="swatch-section__header">
+					<h1>Opaque Swatches</h1>
+				</header>
+				<div class="swatch-section__body clearfix">
+					{{ OPAQUE_SWATCH_MARKUP }}
+				</div>
+			</section>
+		</main>
 	</body>
 </html>

@@ -26,32 +26,41 @@ function hexScraper( args ) {
 	const templateSrc = fs.readFileSync( CONFIG.defaults.template, 'utf8' );
 
 	// Get all colors from stylesheet.
-	const colors = ( inputSrc.match( /(#[a-f0-9]{3,6})|rgba?\(\s?(([0-9\.]+),?\s?){3,4}\s?\)/gmi ) || [] );
+	const colorsArr = utils.getColors( inputSrc );
 
-	// Filter out duplicate colors.
-	const colorsUnique = colors.filter( ( color, index, arr ) => { return arr.indexOf( color ) === index; } );
+	// Convert array of color strings to array of 'colorObjs'.
+	const colorObjs =  utils.getColorObjects( colorsArr );
 
-	// Convert all non-hex colors (eg. `rgb()`/`rgba()`) to hex codes.
-	const colorsFlattened = colorsUnique.map( ( color ) => {
-		if ( color.substring( 0, 1 ) === '#' ) {
-			return color;
-		} else {
-			return utils.rgbToHex( color );
-		}
-	} );
+	// Assemble output: transparent swatches.
+	const transparentSwatches = colorObjs
+		.filter( ( colorObj ) => {
+			/// TODO[@jrmykolyn]: Pull 'check' into dedicated method.
+			return ( colorObj.opacity !== undefined && colorObj.opacity !== -1 );
+		} )
+		.map( ( colorObj ) => {
+			return utils.getColorObjectMarkup( colorObj, { isTransparent: true } );
+		} )
+		.reduce( ( a, b ) => {
+			return `${a}${b}`;
+		}, '' );
 
-	// Assemble output.
-	const output = colorsFlattened
-		.sort()
-		.map( ( color ) => {
-			return `<div style="width: 100px; height: 100px; display: block; background: ${color}; float: left;"></div>`;
+	// Assemble output: opaque swatches.
+	const opaqueSwatches = colorObjs
+		.filter( ( colorObj ) => {
+			/// TODO[@jrmykolyn]: Pull 'check' into dedicated method.
+			return ( colorObj.opacity === undefined || colorObj.opacity === -1 );
+		} )
+		.map( ( colorObj ) => {
+			return utils.getColorObjectMarkup( colorObj, { isTransparent: false } );
 		} )
 		.reduce( ( a, b ) => {
 			return `${a}${b}`;
 		}, '' );
 
 	// Inject output into template.
-	const templateDist = templateSrc.replace( /\{\{\s?SWATCH_MARKUP\s?\}\}/gmi, output );
+	var templateDist = templateSrc;
+	templateDist = templateDist.replace( /\{\{\s?TRANSPARENT_SWATCH_MARKUP\s?\}\}/gmi, transparentSwatches );
+	templateDist = templateDist.replace( /\{\{\s?OPAQUE_SWATCH_MARKUP\s?\}\}/gmi, opaqueSwatches );
 
 	// Write compiled template to file system.
 	fs.writeFileSync( args.outFile || CONFIG.defaults.outFile, templateDist );

@@ -74,8 +74,10 @@ export default class Color {
 	// INSTANCE METHODS
 	constructor( color ) {
 		this.originalValue = color;
-		this.hex = Color.getHex( color ); /// TEMP
-		this.opacity = Color.getOpacity( color ); /// TEMP
+		this.hex = Color.getHex( color );
+		this.opacity = Color.getOpacity( color );
+
+		return this;
 	}
 
 	isTransparent() {

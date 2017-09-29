@@ -19,10 +19,6 @@ const rootDir = pkgDir.sync( __dirname );
 // --------------------------------------------------
 // PUBLIC API
 // --------------------------------------------------
-export const data = {
-	hexChars: '0123456789abcdef'.split( '' ),
-}
-
 export const defaults = {
 	input: `${rootDir}/src/data/styles.css`,
 	template: `${rootDir}/src/views/index.html`,

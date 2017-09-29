@@ -21,7 +21,7 @@ exports.data = {
     hexChars: '0123456789abcdef'.split('')
 };
 exports.defaults = {
-    input: rootDir + "/demo/src/styles.css",
-    template: rootDir + "/demo/src/index.html",
+    input: rootDir + "/src/data/styles.css",
+    template: rootDir + "/src/views/index.html",
     outFile: process.cwd() + "/index.html"
 };

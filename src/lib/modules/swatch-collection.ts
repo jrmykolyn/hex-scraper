@@ -6,7 +6,13 @@
 // Project
 import Color from './color';
 
+// --------------------------------------------------
+// PUBLIC API
+// --------------------------------------------------
 export default class SwatchCollection {
+	// CLASS PROPERTIES
+	static colorRegex: any = /(#[a-f0-9]{3,6})|rgba?\(\s?(([0-9\.]+),?\s?){3,4}\s?\)/gmi;
+
 	// INSTANCE PROPERTIES
 	colors: Array<any>;
 
@@ -16,7 +22,7 @@ export default class SwatchCollection {
 			return null;
 		}
 
-		return ( input.match( /(#[a-f0-9]{3,6})|rgba?\(\s?(([0-9\.]+),?\s?){3,4}\s?\)/gmi ) || [] );
+		return ( input.match( SwatchCollection.colorRegex ) || [] );
 	}
 
 	// INSTANCE METHODS

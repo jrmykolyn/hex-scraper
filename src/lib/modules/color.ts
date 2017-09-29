@@ -6,20 +6,23 @@
 // Project
 
 // --------------------------------------------------
-// DECLARE VARS
-// --------------------------------------------------
-
-// --------------------------------------------------
-// DECLARE FUNCTIONS
+// PUBLIC API
 // --------------------------------------------------
 export default class Color {
 	// CLASS PROPERTIES
 	static hexChars: Array<string> = '0123456789abcdef'.split( '' );
+	static alphaRegex: any = /rgba\(\s?([0-9]{1,3}[\,\s]{1,3}){3}([0-9\.\s]*)\)/gmi;
+	static rgbValRegex: any = /([0-5]{1,3})/gmi;
+
+	// INSTANCE PROPERTIES
+	originalValue: string;
+	hex: string;
+	opacity: number;
 
 	// CLASS METHODS
 	static rgbToHex( color ) {
 		// Extract RGB values from `color`.
-		var vals = color.match( /([0-5]{1,3})/gmi );
+		var vals = color.match( Color.rgbValRegex );
 
 		// Convert extracted `vals` to hex code.
 		/// TODO[@jrmykolyn]: Make this not gross.
@@ -61,15 +64,9 @@ export default class Color {
 	}
 
 	static getOpacity( color ) {
-		let pattern = /rgba\(\s?([0-9]{1,3}[\,\s]{1,3}){3}([0-9\.\s]*)\)/gmi; /// TEMP
 
-		return color.match( pattern ) ? parseFloat( pattern.exec( color ).reverse()[ 0 ] ) : -1;
+		return color.match( Color.alphaRegex ) ? parseFloat( Color.alphaRegex.exec( color ).reverse()[ 0 ] ) : -1;
 	}
-
-	// INSTANCE PROPERTIES
-	originalValue: string;
-	hex: string;
-	opacity: number;
 
 	// INSTANCE METHODS
 	constructor( color ) {
@@ -116,7 +113,3 @@ export default class Color {
 		return declarations;
 	}
 }
-
-// --------------------------------------------------
-// PUBLIC API
-// --------------------------------------------------

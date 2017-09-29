@@ -10,6 +10,8 @@ import * as fs from 'fs';
 import * as utils from './utils';
 import * as CONFIG from './config';
 
+import Color from './modules/color';
+
 // --------------------------------------------------
 // DECLARE VARS
 // --------------------------------------------------
@@ -19,6 +21,7 @@ import * as CONFIG from './config';
 // DECLARE FUNCTIONS
 // --------------------------------------------------
 function hexScraper( args ) {
+
 	// Read source stylesheet.
 	const inputSrc = ( args.data || fs.readFileSync( args.input || CONFIG.defaults.input, 'utf8' ) );
 
@@ -29,16 +32,17 @@ function hexScraper( args ) {
 	const colorsArr = utils.getColors( inputSrc );
 
 	// Convert array of color strings to array of 'colorObjs'.
-	const colorObjs =  utils.getColorObjects( colorsArr );
+	const colorObjs = colorsArr.map( ( color ) => {
+		return new Color( color );
+	} );
 
 	// Assemble output: transparent swatches.
 	const transparentSwatches = colorObjs
 		.filter( ( colorObj ) => {
-			/// TODO[@jrmykolyn]: Pull 'check' into dedicated method.
-			return ( colorObj.opacity !== undefined && colorObj.opacity !== -1 );
+			return colorObj.isTransparent();
 		} )
 		.map( ( colorObj ) => {
-			return utils.getColorObjectMarkup( colorObj, { isTransparent: true } );
+			return colorObj.toSwatch();
 		} )
 		.reduce( ( a, b ) => {
 			return `${a}${b}`;
@@ -47,11 +51,10 @@ function hexScraper( args ) {
 	// Assemble output: opaque swatches.
 	const opaqueSwatches = colorObjs
 		.filter( ( colorObj ) => {
-			/// TODO[@jrmykolyn]: Pull 'check' into dedicated method.
-			return ( colorObj.opacity === undefined || colorObj.opacity === -1 );
+			return !colorObj.isTransparent();
 		} )
 		.map( ( colorObj ) => {
-			return utils.getColorObjectMarkup( colorObj, { isTransparent: false } );
+			return colorObj.toSwatch();
 		} )
 		.reduce( ( a, b ) => {
 			return `${a}${b}`;

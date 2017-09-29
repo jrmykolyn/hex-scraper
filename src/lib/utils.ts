@@ -4,7 +4,7 @@
 // Node
 // Vendor
 // Project
-const CONFIG = require( './config' );
+import * as CONFIG from './config';
 
 // --------------------------------------------------
 // DECLARE VARS
@@ -13,7 +13,7 @@ const CONFIG = require( './config' );
 // --------------------------------------------------
 // DECLARE FUNCTIONS
 // --------------------------------------------------
-function getColors( str ) {
+export function getColors( str ) {
 	if ( !str || typeof str !== 'string' ) {
 		return null;
 	}
@@ -21,7 +21,7 @@ function getColors( str ) {
 	return ( str.match( /(#[a-f0-9]{3,6})|rgba?\(\s?(([0-9\.]+),?\s?){3,4}\s?\)/gmi ) || [] );
 }
 
-function getColorObjects( arr ) {
+export function getColorObjects( arr ) {
 	return arr
 		.filter( ( color, index, arr ) => {
 			return arr.indexOf( color ) === index;
@@ -46,7 +46,7 @@ function getColorObjects( arr ) {
 		} );
 }
 
-function getColorObjectMarkup( colorObj, options ) {
+export function getColorObjectMarkup( colorObj, options ) {
 	options = ( options && typeof options === 'object' && !Array.isArray( options ) ) ? options : {};
 
 	var declarations = getOpaqueSwatchDeclarations( colorObj );
@@ -60,7 +60,7 @@ function getColorObjectMarkup( colorObj, options ) {
 	return `<div class="swatch" style="${declarationString}"></div>`;
 }
 
-function getOpaqueSwatchDeclarations( colorObj ) {
+export function getOpaqueSwatchDeclarations( colorObj ) {
 	var declarations = [];
 
 	declarations.push( `background: ${colorObj.value}` );
@@ -68,7 +68,7 @@ function getOpaqueSwatchDeclarations( colorObj ) {
 	return declarations;
 }
 
-function getTransparentSwatchDeclaratons( colorObj ) {
+export function getTransparentSwatchDeclaratons( colorObj ) {
 	var declarations = [];
 
 	declarations.push( `opacity: ${colorObj.opacity}` );
@@ -76,7 +76,7 @@ function getTransparentSwatchDeclaratons( colorObj ) {
 	return declarations;
 }
 
-function rgbToHex( colorStr ) {
+export function rgbToHex( colorStr ) {
 	// Extract RGB values from `color`.
 	var vals = colorStr.match( /([0-5]{1,3})/gmi );
 
@@ -94,7 +94,7 @@ function rgbToHex( colorStr ) {
 				return [ n, n ];
 			} else {
 				return [
-					parseInt( n, 10 ),
+					parseInt( n + '', 10 ),
 					Math.floor( ( n % 1 ) * 16 ),
 				];
 			}
@@ -110,13 +110,3 @@ function rgbToHex( colorStr ) {
 
 	return hex;
 }
-
-// --------------------------------------------------
-// PUBLIC API
-// --------------------------------------------------
-module.exports = {
-	rgbToHex,
-	getColors,
-	getColorObjects,
-	getColorObjectMarkup,
-};

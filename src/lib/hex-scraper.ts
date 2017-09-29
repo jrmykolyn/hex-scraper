@@ -2,13 +2,13 @@
 // IMPORT MODULES
 // --------------------------------------------------
 // Node
-const fs = require( 'fs' );
+import * as fs from 'fs';
 
 // Vendor
 
 // Project
-const utils = require( './utils' );
-const CONFIG = require( './config' );
+import * as utils from './utils';
+import * as CONFIG from './config';
 
 // --------------------------------------------------
 // DECLARE VARS
@@ -69,4 +69,4 @@ function hexScraper( args ) {
 // --------------------------------------------------
 // PUBLIC API
 // --------------------------------------------------
-module.exports = hexScraper;
+export = hexScraper;

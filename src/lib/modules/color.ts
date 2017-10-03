@@ -91,7 +91,7 @@ export default class Color {
 		let declarations = this.getOpaqueSwatchDeclarations();
 
 		if ( this.isTransparent() ) {
-			declarations = declarations.concat( this.getTransparentSwatchDeclaratons() )
+			declarations = declarations.concat( this.getTransparentSwatchDeclarations() )
 		}
 
 		return declarations;
@@ -105,7 +105,7 @@ export default class Color {
 		return declarations;
 	}
 
-	getTransparentSwatchDeclaratons() {
+	getTransparentSwatchDeclarations() {
 		let declarations = [];
 
 		declarations.push( `opacity: ${this.opacity}` );

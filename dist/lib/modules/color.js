@@ -71,7 +71,7 @@ var Color = /** @class */ (function () {
     Color.prototype.getSwatchDeclarations = function () {
         var declarations = this.getOpaqueSwatchDeclarations();
         if (this.isTransparent()) {
-            declarations = declarations.concat(this.getTransparentSwatchDeclaratons());
+            declarations = declarations.concat(this.getTransparentSwatchDeclarations());
         }
         return declarations;
     };
@@ -80,7 +80,7 @@ var Color = /** @class */ (function () {
         declarations.push("background: " + this.hex);
         return declarations;
     };
-    Color.prototype.getTransparentSwatchDeclaratons = function () {
+    Color.prototype.getTransparentSwatchDeclarations = function () {
         var declarations = [];
         declarations.push("opacity: " + this.opacity);
         return declarations;

@@ -6,8 +6,8 @@
 var fs = require("fs");
 // Vendor
 // Project
-var utils = require("./utils");
 var CONFIG = require("./config");
+var swatch_collection_1 = require("./modules/swatch-collection");
 // --------------------------------------------------
 // DECLARE VARS
 // --------------------------------------------------
@@ -19,30 +19,22 @@ function hexScraper(args) {
     var inputSrc = (args.data || fs.readFileSync(args.input || CONFIG.defaults.input, 'utf8'));
     // Read source output template.
     var templateSrc = fs.readFileSync(CONFIG.defaults.template, 'utf8');
-    // Get all colors from stylesheet.
-    var colorsArr = utils.getColors(inputSrc);
-    // Convert array of color strings to array of 'colorObjs'.
-    var colorObjs = utils.getColorObjects(colorsArr);
+    // Parse input into collection of swatches.
+    var swatchCollection = new swatch_collection_1["default"](inputSrc);
     // Assemble output: transparent swatches.
-    var transparentSwatches = colorObjs
-        .filter(function (colorObj) {
-        /// TODO[@jrmykolyn]: Pull 'check' into dedicated method.
-        return (colorObj.opacity !== undefined && colorObj.opacity !== -1);
-    })
-        .map(function (colorObj) {
-        return utils.getColorObjectMarkup(colorObj, { isTransparent: true });
+    var transparentSwatches = swatchCollection
+        .transparent()
+        .map(function (color) {
+        return color.toSwatch();
     })
         .reduce(function (a, b) {
         return "" + a + b;
     }, '');
     // Assemble output: opaque swatches.
-    var opaqueSwatches = colorObjs
-        .filter(function (colorObj) {
-        /// TODO[@jrmykolyn]: Pull 'check' into dedicated method.
-        return (colorObj.opacity === undefined || colorObj.opacity === -1);
-    })
-        .map(function (colorObj) {
-        return utils.getColorObjectMarkup(colorObj, { isTransparent: false });
+    var opaqueSwatches = swatchCollection
+        .opaque()
+        .map(function (color) {
+        return color.toSwatch();
     })
         .reduce(function (a, b) {
         return "" + a + b;

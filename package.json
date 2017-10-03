@@ -4,7 +4,7 @@
   "description": "Hex Scraper compiles an HTML file of swatches corresponding to the colors used within a given stylesheet or CSS string.",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "node ./node_modules/.bin/ava"
+    "test": "node ./node_modules/.bin/ava --verbose"
   },
   "repository": {
     "type": "git",

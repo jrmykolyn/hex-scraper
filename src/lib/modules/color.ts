@@ -2,7 +2,10 @@
 // IMPORT MODULES
 // --------------------------------------------------
 // Node
+
 // Vendor
+const hexToHsl = require( 'hex-to-hsl' );
+
 // Project
 
 // --------------------------------------------------
@@ -17,6 +20,7 @@ export default class Color {
 	// INSTANCE PROPERTIES
 	originalValue: string;
 	hex: string;
+	hsl: Array<any>;
 	opacity: number;
 
 	// CLASS METHODS
@@ -63,6 +67,10 @@ export default class Color {
 		}
 	}
 
+	static hexToHsl( color: string ): Array<number> {
+		return hexToHsl( color )
+	}
+
 	static getOpacity( color ) {
 
 		return color.match( Color.alphaRegex ) ? parseFloat( Color.alphaRegex.exec( color ).reverse()[ 0 ] ) : -1;
@@ -72,9 +80,27 @@ export default class Color {
 	constructor( color ) {
 		this.originalValue = color;
 		this.hex = Color.getHex( color );
+		this.hsl = Color.hexToHsl( this.hex );
 		this.opacity = Color.getOpacity( color );
 
 		return this;
+	}
+
+	getHsl( options: any = {} ) {
+		let h, s, l;
+
+		switch ( options.as ) {
+			case 'object':
+				[ h, s, l ] = this.hsl;
+
+				return { h, s, l };
+			case 'string':
+				[ h, s, l ] = this.hsl;
+
+				return `hsl( ${h}, ${s}%, ${l}% )`;
+			default:
+				return this.hsl;
+		}
 	}
 
 	isTransparent() {

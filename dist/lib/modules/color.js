@@ -3,9 +3,10 @@
 // IMPORT MODULES
 // --------------------------------------------------
 // Node
-// Vendor
-// Project
 exports.__esModule = true;
+// Vendor
+var hexToHsl = require('hex-to-hsl');
+// Project
 // --------------------------------------------------
 // PUBLIC API
 // --------------------------------------------------
@@ -14,6 +15,7 @@ var Color = /** @class */ (function () {
     function Color(color) {
         this.originalValue = color;
         this.hex = Color.getHex(color);
+        this.hsl = Color.hexToHsl(this.hex);
         this.opacity = Color.getOpacity(color);
         return this;
     }
@@ -58,8 +60,26 @@ var Color = /** @class */ (function () {
             return Color.rgbToHex(color);
         }
     };
+    Color.hexToHsl = function (color) {
+        return hexToHsl(color);
+    };
     Color.getOpacity = function (color) {
         return color.match(Color.alphaRegex) ? parseFloat(Color.alphaRegex.exec(color).reverse()[0]) : -1;
+    };
+    Color.prototype.getHsl = function (options) {
+        if (options === void 0) { options = {}; }
+        var h, s, l;
+        switch (options.as) {
+            case 'object':
+                _a = this.hsl, h = _a[0], s = _a[1], l = _a[2];
+                return { h: h, s: s, l: l };
+            case 'string':
+                _b = this.hsl, h = _b[0], s = _b[1], l = _b[2];
+                return "hsl( " + h + ", " + s + "%, " + l + "% )";
+            default:
+                return this.hsl;
+        }
+        var _a, _b;
     };
     Color.prototype.isTransparent = function () {
         return (this.opacity && this.opacity !== -1);

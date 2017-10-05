@@ -30,6 +30,15 @@ test( 'Class should expose the `getHex()` method.', ( t ) => {
 	t.is( typeof Color.getHex, 'function' );
 } );
 
+test( 'Class should expose the `hexToHsl()` method.', ( t ) => {
+	t.plan( 2 );
+
+	t.is( typeof Color.hexToHsl, 'function' );
+
+	t.true( Array.isArray( Color.hexToHsl( '#ffffff' ) ) );
+} );
+
+
 test( 'Class should expose the `getOpacity()` method.', ( t ) => {
 	t.plan( 1 );
 	t.is( typeof Color.getHex, 'function' );
@@ -48,6 +57,21 @@ test( 'It should throw an error when instantiated with missing or invalid argume
 	t.throws( () => {
 		let color = new Color();
 	} );
+} );
+
+test( 'It should expose the `getHsl()` instance method.', ( t ) => {
+	t.plan( 3 );
+
+	let color = new Color( '#fff' );
+
+	let hslDefault = color.getHsl();
+	t.true( typeof hslDefault === 'object' && Array.isArray( hslDefault ) );
+
+	let hslObj = color.getHsl( { as: 'object' } );
+	t.true( typeof hslObj === 'object' );
+
+	let hslStr = color.getHsl( { as: 'string' } );
+	t.true( typeof hslStr === 'string' );
 } );
 
 test( 'It should expose the `isTransparent()` instance method.', ( t ) => {

@@ -20,6 +20,7 @@
     "typescript": "^2.5.3"
   },
   "dependencies": {
+    "hex-to-hsl": "^1.0.2",
     "pkg-dir": "^2.0.0"
   }
 }

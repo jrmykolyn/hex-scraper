@@ -1,0 +1,14 @@
+$hue: 0;
+$maxHue: 360;
+$step: 10;
+
+@while $hue < $maxHue {
+
+	@for $saturation from 100 through 100 {
+		.hue--#{$hue}--#{$saturation} {
+			background: hsl( $hue, $saturation, 50% );
+		}
+	}
+
+	$hue: $hue + $step;
+}

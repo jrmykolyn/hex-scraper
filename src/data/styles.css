@@ -1,10 +1,143 @@
-html {
-	color: #111;
-	color: #222;
-	color: #333;
-	color: rgb( 100, 50, 150 );
-	color: rgb( 22, 57, 102 );
-	color: rgb( 67,107,250 );
-	color: rgba( 150, 50, 0, 0.2 );
-	color: rgba( 255, 125, 14, 0.6 );
+.hue--0--100 {
+  background: red;
+}
+
+.hue--10--100 {
+  background: #ff2b00;
+}
+
+.hue--20--100 {
+  background: #ff5500;
+}
+
+.hue--30--100 {
+  background: #ff8000;
+}
+
+.hue--40--100 {
+  background: #ffaa00;
+}
+
+.hue--50--100 {
+  background: #ffd500;
+}
+
+.hue--60--100 {
+  background: yellow;
+}
+
+.hue--70--100 {
+  background: #d5ff00;
+}
+
+.hue--80--100 {
+  background: #aaff00;
+}
+
+.hue--90--100 {
+  background: #80ff00;
+}
+
+.hue--100--100 {
+  background: #55ff00;
+}
+
+.hue--110--100 {
+  background: #2bff00;
+}
+
+.hue--120--100 {
+  background: lime;
+}
+
+.hue--130--100 {
+  background: #00ff2b;
+}
+
+.hue--140--100 {
+  background: #00ff55;
+}
+
+.hue--150--100 {
+  background: #00ff80;
+}
+
+.hue--160--100 {
+  background: #00ffaa;
+}
+
+.hue--170--100 {
+  background: #00ffd5;
+}
+
+.hue--180--100 {
+  background: cyan;
+}
+
+.hue--190--100 {
+  background: #00d5ff;
+}
+
+.hue--200--100 {
+  background: #00aaff;
+}
+
+.hue--210--100 {
+  background: #0080ff;
+}
+
+.hue--220--100 {
+  background: #0055ff;
+}
+
+.hue--230--100 {
+  background: #002bff;
+}
+
+.hue--240--100 {
+  background: blue;
+}
+
+.hue--250--100 {
+  background: #2b00ff;
+}
+
+.hue--260--100 {
+  background: #5500ff;
+}
+
+.hue--270--100 {
+  background: #8000ff;
+}
+
+.hue--280--100 {
+  background: #aa00ff;
+}
+
+.hue--290--100 {
+  background: #d500ff;
+}
+
+.hue--300--100 {
+  background: magenta;
+}
+
+.hue--310--100 {
+  background: #ff00d5;
+}
+
+.hue--320--100 {
+  background: #ff00aa;
+}
+
+.hue--330--100 {
+  background: #ff0080;
+}
+
+.hue--340--100 {
+  background: #ff0055;
+}
+
+.hue--350--100 {
+  background: #ff002b;
 }
